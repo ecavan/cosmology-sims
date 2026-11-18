@@ -1,0 +1,13 @@
+cff-version: 1.2.0
+message: "If you use this code, please cite it as below."
+title: "cosmology-sims: running-vacuum background, likelihoods and mock tests"
+type: software
+authors:
+  - family-names: Cavan
+    given-names: Elijah
+    affiliation: "Independent researcher, Montréal, QC, Canada"
+version: 1.0.0
+date-released: 2026-11-18
+license: MIT
+repository-code: "https://github.com/ecavan/cosmology-sims"
+abstract: "Code and results for the paper 'Can a running vacuum explain DESI's phantom crossing?': a Rust background solver for running-vacuum cosmologies, Python likelihoods and mock tests for DESI DR2 BAO, supernovae and the CMB, a CLASS patch for the full Planck likelihood, and Lean 4 proofs of the analytic results."

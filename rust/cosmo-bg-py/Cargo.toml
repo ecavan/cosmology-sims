@@ -1,0 +1,14 @@
+[package]
+name = "cosmo-bg-py"
+version = "0.1.0"
+edition.workspace = true
+license.workspace = true
+description = "Python bindings for cosmo-bg (import as `cosmo_bg`)"
+
+[lib]
+name = "cosmo_bg"
+crate-type = ["cdylib"]
+
+[dependencies]
+cosmo-bg = { path = "../cosmo-bg" }
+pyo3 = { version = "0.22", features = ["extension-module", "abi3-py39"] }

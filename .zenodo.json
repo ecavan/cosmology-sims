@@ -1,0 +1,19 @@
+{
+ "title": "cosmology-sims: running-vacuum background, likelihoods and mock tests",
+ "upload_type": "software",
+ "creators": [
+  {
+   "name": "Cavan, Elijah",
+   "affiliation": "Independent researcher, Montréal, QC, Canada"
+  }
+ ],
+ "license": "MIT",
+ "description": "Code and results for the paper 'Can a running vacuum explain DESI's phantom crossing?' (Elijah Cavan, 2026): a Rust background solver for running-vacuum cosmologies, Python likelihoods and mock tests for DESI DR2 BAO, supernovae and the CMB, a CLASS v3.4.1 patch for the full Planck likelihood, the final MCMC chains, and Lean 4 proofs of the analytic results.",
+ "keywords": [
+  "cosmology",
+  "dark energy",
+  "running vacuum",
+  "DESI",
+  "Lean 4"
+ ]
+}

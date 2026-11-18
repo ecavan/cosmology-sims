@@ -1,0 +1,110 @@
+# Runs behind results/full_cmb_pr4.jsonl and results/full_cmb_flipped.jsonl, in order (tag|full_cmb.py arguments).
+# Two workers, one per file; each line was run once (rvm_p0.5 was dropped: Ω_c < 0 early for ν > 0 with rad=1).
+# Lines before the first rerun come from queue_full_cmb.sh; logs are not kept.
+## worker A → full_cmb_pr4.jsonl
+lcdm_warm1|model=lcdm warm=1
+rvm_m1.0_r|model=rvm nu=-0.001 rad=1 extrap=-0.0005
+rvm_p0.5|model=rvm nu=0.0005 rad=1 extrap=-0.0005
+rvm_m1.5_r|model=rvm nu=-0.0015 rad=1 extrap=-0.0005,-0.001
+rvm_m2.0|model=rvm nu=-0.002 rad=1 extrap=-0.001,-0.0015
+rvm_m0.5_w|model=rvm nu=-0.0005 rad=1 warm=1
+cpl|model=cpl maxfun=220
+cpl_w|model=cpl warm=1
+rrvm_m0.5|model=rvm nu=-0.0005 rad=0
+rrvm_m1.0|model=rvm nu=-0.001 rad=0 extrap=-0.0005
+rrvm_p0.5|model=rvm nu=0.0005 rad=0 extrap=-0.0005
+lcdm_warm2|model=lcdm warm=1
+rvm_m0.5_w2|model=rvm nu=-0.0005 rad=1 warm=1
+rvm_m0.25|model=rvm nu=-0.00025 rad=1 extrap=-0.0005
+rvm_m0.75|model=rvm nu=-0.00075 rad=1 extrap=-0.0005,-0.001
+rvm_m1.0_w|model=rvm nu=-0.001 rad=1 warm=1
+rrvm_m0.5_w|model=rvm nu=-0.0005 rad=0 warm=1
+rrvm_m0.25|model=rvm nu=-0.00025 rad=0 extrap=-0.0005
+rrvm_m1.0_w|model=rvm nu=-0.001 rad=0 warm=1
+rrvm_m0.5_w2|model=rvm nu=-0.0005 rad=0 warm=1
+rrvm_m1.0_w2|model=rvm nu=-0.001 rad=0 warm=1
+rrvm_m0.25_w|model=rvm nu=-0.00025 rad=0 warm=1
+rvm_m0.25_w|model=rvm nu=-0.00025 rad=1 warm=1
+rvm_m0.75_w|model=rvm nu=-0.00075 rad=1 warm=1
+lcdm_warm3|model=lcdm warm=1
+## worker B → full_cmb_flipped.jsonl
+flip_0.03_w|model=flipped nu=0.03 z1=1.22 z2=2.16 warm=1
+flip_0.06_w|model=flipped nu=0.06 z1=1.22 z2=2.16 warm=1
+flip_0.12_w|model=flipped nu=0.12 z1=1.22 z2=2.16 warm=1
+flip_0.015_w|model=flipped nu=0.015 z1=1.22 z2=2.16 warm=1
+flip_0.09|model=flipped nu=0.09 z1=1.22 z2=2.16 extrap=0.06,0.12
+flipB_0.03|model=flipped nu=0.03 z1=1.1 z2=1.8
+flipB_0.12|model=flipped nu=0.12 z1=1.1 z2=1.8
+flip_free|model=flipped nu=0.06 z1=1.22 z2=2.16 free_z=1 maxfun=260
+flipB_0.06|model=flipped nu=0.06 z1=1.1 z2=1.8 extrap=0.03,0.12
+flipB_0.18|model=flipped nu=0.18 z1=1.1 z2=1.8 extrap=0.12
+flip_0.075|model=flipped nu=0.075 z1=1.22 z2=2.16 extrap=0.06,0.09
+flip_0.075_w|model=flipped nu=0.075 z1=1.22 z2=2.16 warm=1
+flip_0.06_w2|model=flipped nu=0.06 z1=1.22 z2=2.16 warm=1
+flip_0.09_w|model=flipped nu=0.09 z1=1.22 z2=2.16 warm=1
+flipB_0.09|model=flipped nu=0.09 z1=1.1 z2=1.8 extrap=0.06,0.12
+flipB_0.15|model=flipped nu=0.15 z1=1.1 z2=1.8 extrap=0.12
+flipB_0.12_w|model=flipped nu=0.12 z1=1.1 z2=1.8 warm=1
+flip_0.12_w2|model=flipped nu=0.12 z1=1.22 z2=2.16 warm=1
+flipB_0.09_w|model=flipped nu=0.09 z1=1.1 z2=1.8 warm=1
+flipB_0.105|model=flipped nu=0.105 z1=1.1 z2=1.8 extrap=0.09,0.12
+flipB_0.06_w|model=flipped nu=0.06 z1=1.1 z2=1.8 warm=1
+flip_0.045|model=flipped nu=0.045 z1=1.22 z2=2.16 extrap=0.03,0.06
+flipB_0.15_w|model=flipped nu=0.15 z1=1.1 z2=1.8 warm=1
+## both workers → full_cmb_flipped.jsonl: posterior-mean switches of de Cruz Pérez et al. (2025)
+flipM_0.03|model=flipped nu=0.03 z1=2.58 z2=6.1
+flipM_0.015|model=flipped nu=0.015 z1=2.58 z2=6.1
+flipM_0.06|model=flipped nu=0.06 z1=2.58 z2=6.1 extrap=0.03
+flipM_0.045|model=flipped nu=0.045 z1=2.58 z2=6.1 extrap=0.015
+
+## ACT DR6 + PR4 lensing (lens=actplanck), one worker, in order → full_cmb_actplanck.jsonl (minimal and RRVM-like RVM, ΛCDM, w0wa)
+## and full_cmb_flipped_actplanck.jsonl (flipped, out=...). Pass 1 warm-starts from the PR4 fits, pass 2 from pass 1.
+lcdm1|model=lcdm lens=actplanck warm=1 warm_from=results/full_cmb_pr4.jsonl warm_lens=pr4
+cpl1|model=cpl lens=actplanck warm=1 warm_from=results/full_cmb_pr4.jsonl warm_lens=pr4
+lcdm2|model=lcdm lens=actplanck warm=1
+cpl2|model=cpl lens=actplanck warm=1
+rvm1_-0.00025|model=rvm nu=-0.00025 rad=1 lens=actplanck warm=1 warm_from=results/full_cmb_pr4.jsonl warm_lens=pr4
+rvm1_-0.0005|model=rvm nu=-0.0005 rad=1 lens=actplanck warm=1 warm_from=results/full_cmb_pr4.jsonl warm_lens=pr4
+rvm1_-0.00075|model=rvm nu=-0.00075 rad=1 lens=actplanck warm=1 warm_from=results/full_cmb_pr4.jsonl warm_lens=pr4
+rvm1_-0.001|model=rvm nu=-0.001 rad=1 lens=actplanck warm=1 warm_from=results/full_cmb_pr4.jsonl warm_lens=pr4
+rvm1_-0.0015|model=rvm nu=-0.0015 rad=1 lens=actplanck warm=1 warm_from=results/full_cmb_pr4.jsonl warm_lens=pr4
+rvm1_-0.002|model=rvm nu=-0.002 rad=1 lens=actplanck warm=1 warm_from=results/full_cmb_pr4.jsonl warm_lens=pr4
+rvm2_-0.00025|model=rvm nu=-0.00025 rad=1 lens=actplanck warm=1
+rvm2_-0.0005|model=rvm nu=-0.0005 rad=1 lens=actplanck warm=1
+rvm2_-0.00075|model=rvm nu=-0.00075 rad=1 lens=actplanck warm=1
+rvm2_-0.001|model=rvm nu=-0.001 rad=1 lens=actplanck warm=1
+flA1_0.03|model=flipped nu=0.03 z1=1.22 z2=2.16 lens=actplanck out=results/full_cmb_flipped_actplanck.jsonl warm=1 warm_from=results/full_cmb_flipped.jsonl warm_lens=pr4
+flA1_0.045|model=flipped nu=0.045 z1=1.22 z2=2.16 lens=actplanck out=results/full_cmb_flipped_actplanck.jsonl warm=1 warm_from=results/full_cmb_flipped.jsonl warm_lens=pr4
+flA1_0.06|model=flipped nu=0.06 z1=1.22 z2=2.16 lens=actplanck out=results/full_cmb_flipped_actplanck.jsonl warm=1 warm_from=results/full_cmb_flipped.jsonl warm_lens=pr4
+flA1_0.075|model=flipped nu=0.075 z1=1.22 z2=2.16 lens=actplanck out=results/full_cmb_flipped_actplanck.jsonl warm=1 warm_from=results/full_cmb_flipped.jsonl warm_lens=pr4
+flA1_0.09|model=flipped nu=0.09 z1=1.22 z2=2.16 lens=actplanck out=results/full_cmb_flipped_actplanck.jsonl warm=1 warm_from=results/full_cmb_flipped.jsonl warm_lens=pr4
+flA1_0.12|model=flipped nu=0.12 z1=1.22 z2=2.16 lens=actplanck out=results/full_cmb_flipped_actplanck.jsonl warm=1 warm_from=results/full_cmb_flipped.jsonl warm_lens=pr4
+flB1_0.06|model=flipped nu=0.06 z1=1.1 z2=1.8 lens=actplanck out=results/full_cmb_flipped_actplanck.jsonl warm=1 warm_from=results/full_cmb_flipped.jsonl warm_lens=pr4
+flB1_0.09|model=flipped nu=0.09 z1=1.1 z2=1.8 lens=actplanck out=results/full_cmb_flipped_actplanck.jsonl warm=1 warm_from=results/full_cmb_flipped.jsonl warm_lens=pr4
+flB1_0.105|model=flipped nu=0.105 z1=1.1 z2=1.8 lens=actplanck out=results/full_cmb_flipped_actplanck.jsonl warm=1 warm_from=results/full_cmb_flipped.jsonl warm_lens=pr4
+flB1_0.12|model=flipped nu=0.12 z1=1.1 z2=1.8 lens=actplanck out=results/full_cmb_flipped_actplanck.jsonl warm=1 warm_from=results/full_cmb_flipped.jsonl warm_lens=pr4
+flM1_0.015|model=flipped nu=0.015 z1=2.58 z2=6.1 lens=actplanck out=results/full_cmb_flipped_actplanck.jsonl warm=1 warm_from=results/full_cmb_flipped.jsonl warm_lens=pr4
+flM1_0.03|model=flipped nu=0.03 z1=2.58 z2=6.1 lens=actplanck out=results/full_cmb_flipped_actplanck.jsonl warm=1 warm_from=results/full_cmb_flipped.jsonl warm_lens=pr4
+flA2_0.03|model=flipped nu=0.03 z1=1.22 z2=2.16 lens=actplanck out=results/full_cmb_flipped_actplanck.jsonl warm=1
+flA2_0.045|model=flipped nu=0.045 z1=1.22 z2=2.16 lens=actplanck out=results/full_cmb_flipped_actplanck.jsonl warm=1
+flA2_0.06|model=flipped nu=0.06 z1=1.22 z2=2.16 lens=actplanck out=results/full_cmb_flipped_actplanck.jsonl warm=1
+flA2_0.075|model=flipped nu=0.075 z1=1.22 z2=2.16 lens=actplanck out=results/full_cmb_flipped_actplanck.jsonl warm=1
+flA2_0.09|model=flipped nu=0.09 z1=1.22 z2=2.16 lens=actplanck out=results/full_cmb_flipped_actplanck.jsonl warm=1
+flA2_0.12|model=flipped nu=0.12 z1=1.22 z2=2.16 lens=actplanck out=results/full_cmb_flipped_actplanck.jsonl warm=1
+flB2_0.06|model=flipped nu=0.06 z1=1.1 z2=1.8 lens=actplanck out=results/full_cmb_flipped_actplanck.jsonl warm=1
+flB2_0.09|model=flipped nu=0.09 z1=1.1 z2=1.8 lens=actplanck out=results/full_cmb_flipped_actplanck.jsonl warm=1
+flB2_0.105|model=flipped nu=0.105 z1=1.1 z2=1.8 lens=actplanck out=results/full_cmb_flipped_actplanck.jsonl warm=1
+flB2_0.12|model=flipped nu=0.12 z1=1.1 z2=1.8 lens=actplanck out=results/full_cmb_flipped_actplanck.jsonl warm=1
+flM2_0.015|model=flipped nu=0.015 z1=2.58 z2=6.1 lens=actplanck out=results/full_cmb_flipped_actplanck.jsonl warm=1
+flM2_0.03|model=flipped nu=0.03 z1=2.58 z2=6.1 lens=actplanck out=results/full_cmb_flipped_actplanck.jsonl warm=1
+rr1_-0.00025|model=rvm nu=-0.00025 rad=0 lens=actplanck warm=1 warm_from=results/full_cmb_pr4.jsonl warm_lens=pr4
+rr1_-0.0005|model=rvm nu=-0.0005 rad=0 lens=actplanck warm=1 warm_from=results/full_cmb_pr4.jsonl warm_lens=pr4
+rr1_-0.001|model=rvm nu=-0.001 rad=0 lens=actplanck warm=1 warm_from=results/full_cmb_pr4.jsonl warm_lens=pr4
+rr2_-0.00025|model=rvm nu=-0.00025 rad=0 lens=actplanck warm=1
+rr2_-0.0005|model=rvm nu=-0.0005 rad=0 lens=actplanck warm=1
+rr2_-0.001|model=rvm nu=-0.001 rad=0 lens=actplanck warm=1
+rvm3_-0.001|model=rvm nu=-0.001 rad=1 lens=actplanck warm=1
+
+## Pre-send review (2026-11-12): PR4 flipped (2.58, 6.1) at ν = 0.03 looked under-converged (CamSpec 10549.7 against 10546.7 with ACT); rerun twice
+flM_0.03_r2|model=flipped nu=0.03 z1=2.58 z2=6.1 warm=1
+flM_0.03_r3|model=flipped nu=0.03 z1=2.58 z2=6.1 warm=1

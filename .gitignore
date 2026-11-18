@@ -1,0 +1,33 @@
+/target/
+__pycache__/
+*.pyc
+.venv/
+.DS_Store
+*.whl
+
+# downloaded datasets (python3 -m p1.data)
+data/*
+!data/README.md
+!data/cmb_prior_massless.npz
+!data/camb_early_table_mnu006.npz
+
+# generated outputs and local builds
+out/*
+!out/triangle_*.pdf
+results/*_start.json
+boltzmann/classy_rvm/
+lean/.lake/
+boltzmann/logs/
+
+# MCMC scratch; the final full-Planck chains are kept in chains_v2/ (chain.1.txt only)
+/chains/
+chains_v2/**/logs/
+chains_v2/**/chain.[!1]*
+chains_v2/*.json
+chains_v2/*.log
+chains_v2/*.out
+chains_nocov/
+chains_pilot/
+chains_v2/*/CONVERGED
+chains_v2/*/DONE
+chains_v2/*/rule_state.json
